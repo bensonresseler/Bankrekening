@@ -37,4 +37,14 @@ public class Bank {
             tempRekeningnr.storten(bedrag);
         } else throw new IllegalArgumentException(String.format("Rekening %s bestaat niet.", rekeningnr));
         }
+
+    public void schrijfGeldOver(String afkomst, String ontvangt, int overschrijvenBedrag) {
+        BankRekening tempAfhalen = getRekening(afkomst);
+        BankRekening tempOntvangen = getRekening(ontvangt);
+        if (tempAfhalen == null) throw new IllegalArgumentException (String.format("Rekening %s bestaat niet.", afkomst));
+        if (tempOntvangen == null) throw new IllegalArgumentException (String.format("Rekening %s bestaat niet.", ontvangt));
+
+        tempAfhalen.afhalen(overschrijvenBedrag);
+        tempOntvangen.storten(overschrijvenBedrag);
     }
+}

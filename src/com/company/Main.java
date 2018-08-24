@@ -23,6 +23,13 @@ public class Main {
             System.out.println(ex.getMessage());
         }
         toonRekeningen(bank);
+        try {
+            System.out.println("We schrijven 500 EUR over van 000-0000011-11 naar 000-0000022-22");
+            bank.schrijfGeldOver("000-0000011-11", "000-0000022-22", 500);
+        }catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+        toonRekeningen(bank);
     }
 
     private static void toonRekeningen(Bank bank) {
