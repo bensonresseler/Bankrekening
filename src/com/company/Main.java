@@ -12,7 +12,21 @@ public class Main {
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
-        for (String rekeningnummer : bank.getRekeningnummers()) {
+        toonRekeningen(bank);
+        System.out.println("We storten 1000 EUR op rekening 000-0000011-11");
+        bank.stortGeld("000-0000011-11", 1000);
+        toonRekeningen(bank);
+        try{
+            System.out.println("We proberen 1000 EUR te storten op rekening 000-0000044-44");
+            bank.stortGeld("000-0000044-44", 1000);
+        }catch(IllegalArgumentException ex){
+            System.out.println(ex.getMessage());
+        }
+        toonRekeningen(bank);
+    }
+
+    private static void toonRekeningen(Bank bank) {
+        for(String rekeningnummer:bank.getRekeningnummers()){
             BankRekening br = bank.getRekening(rekeningnummer);
             System.out.printf("Op rekening %s staat %.2f EURO%n", br.getRekeningnummer(), br.getSaldo());
         }

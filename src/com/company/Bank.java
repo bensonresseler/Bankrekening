@@ -30,4 +30,11 @@ public class Bank {
         }
         return null;
     }
-}
+
+    public void stortGeld(String rekeningnr, int bedrag) {
+        BankRekening tempRekeningnr = getRekening(rekeningnr);
+        if (tempRekeningnr != null) {
+            tempRekeningnr.storten(bedrag);
+        } else throw new IllegalArgumentException(String.format("Rekening %s bestaat niet.", rekeningnr));
+        }
+    }
