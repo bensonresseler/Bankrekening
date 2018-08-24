@@ -10,6 +10,7 @@ public class Bank {
     }
 
     public void addRekening(BankRekening bankRekening) {
+        if (getRekening(bankRekening.getRekeningnummer()) != null) throw new IllegalArgumentException(String.format("Rekening %s is niet uniek.", bankRekening.getRekeningnummer()));
         rekeningen.add(bankRekening);
     }
 
