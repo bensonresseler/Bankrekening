@@ -30,6 +30,14 @@ public class Main {
             System.out.println(ex.getMessage());
         }
         toonRekeningen(bank);
+
+        System.out.println("We proberen 1000 EUR over te schrijven van 000-0000011-11 naar 000-0000022-22");
+        try{
+            bank.schrijfGeldOver("000-0000011-11", "000-0000022-22", 1000);
+        }catch(IllegalArgumentException ex){
+            System.out.println(ex.getMessage());
+        }
+        toonRekeningen(bank);
     }
 
     private static void toonRekeningen(Bank bank) {
@@ -62,6 +70,7 @@ class BankRekening {
     }
 
     public void afhalen(double bedrag) {
+        if (bedrag > saldo) throw new IllegalArgumentException("Saldo kan niet negatief worden.");
         saldo -= bedrag;
     }
 }
